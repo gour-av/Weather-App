@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Weather Monitor</string>
+    <string name="enter_Location">Enter Location</string>
+    <string name="getWeather">Get Weather</string>
+    <string name="weatherState">Weather State</string>
+    <string name="windDirection">Wind Direction</string>
+    <string name="date">Date</string>
+    <string name="minTemp">Min Temp</string>
+    <string name="maxTemp">Max Temp</string>
+    <string name="windSpeed">Wind Speed</string>
+    <string name="airPressure">air Pressure</string>
+</resources>
