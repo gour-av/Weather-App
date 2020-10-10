@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Weather Monitor</string>
     <string name="enter_Location">Enter Location</string>
+    <string name="title">Title</string>
+    <string name="locationType">Location Type</string>
+    <string name="latLong">Lattitude Longitude</string>
     <string name="getWeather">Get Weather</string>
     <string name="weatherState">Weather State</string>
     <string name="windDirection">Wind Direction</string>
