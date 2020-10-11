@@ -9,10 +9,10 @@
     tools:context=".SearchActivity">
 
 
-    <EditText
+    <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_search_bar"
+        android:id="@+id/atv_search_bar"
         android:layout_marginStart="@dimen/dp_30"
         android:layout_marginEnd="@dimen/dp_30"
         android:hint="@string/enter_Location"
