@@ -14,12 +14,15 @@ import java.util.ArrayList;
 /*
 Adapter Class of the RecyclerView
  */
-public class ResponseAdapter extends RecyclerView.Adapter<ResponseViewHolder> {
+public class ResponseLocationAdapter extends RecyclerView.Adapter<ResponseLocationViewHolder> {
     private ArrayList<ResponseRequestType> requestTypes;
+    public onClickListener onClickListener;
 
-    public ResponseAdapter(ArrayList<ResponseRequestType> model) {
+
+    public ResponseLocationAdapter(ArrayList<ResponseRequestType> model,onClickListener onClickListener) {
         requestTypes = new ArrayList<>();
         requestTypes.addAll(model);
+        this.onClickListener = onClickListener;
     }
     public void updateDataSet(ArrayList<ResponseRequestType> model) {
         requestTypes.clear();
@@ -29,15 +32,21 @@ public class ResponseAdapter extends RecyclerView.Adapter<ResponseViewHolder> {
 
     @NonNull
     @Override
-    public ResponseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_weather_1_layout, parent, false);
-        return new ResponseViewHolder(view);
+    public ResponseLocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_locations, parent, false);
+        return new ResponseLocationViewHolder(view/*,onClickListener*/);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ResponseViewHolder holder, int position) {
-        ResponseRequestType model = requestTypes.get(position);
+    public void onBindViewHolder(@NonNull ResponseLocationViewHolder holder, int position) {
+        final ResponseRequestType model = requestTypes.get(position);
         holder.setData(model);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickListener.onClick(model);
+            }
+        });
 
 
     }
@@ -45,5 +54,8 @@ public class ResponseAdapter extends RecyclerView.Adapter<ResponseViewHolder> {
     @Override
     public int getItemCount() {
         return requestTypes.size();
+    }
+    public interface onClickListener{
+        void onClick(ResponseRequestType responseRequestType);
     }
 }

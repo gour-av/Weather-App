@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,9 +25,9 @@ import retrofit2.Response;
 /*
 Activity to search the weather report based on the input
  */
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
-    private ResponseAdapter responseAdapter;
+    private ResponseLocationAdapter responseLocationAdapter;
 
     private String Pass;
 
@@ -46,11 +45,20 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void setRecyclerAdapter() {
-        responseAdapter = new ResponseAdapter(respons);
+        responseLocationAdapter = new ResponseLocationAdapter(respons,new ResponseLocationAdapter.onClickListener() {
+            @Override
+            public void onClick(ResponseRequestType responseRequestType) {
+                Intent intent = new Intent(SearchActivity.this,DisplayWeatherActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title",responseRequestType.getTitle());
+                bundle.putString("woeid", String.valueOf(responseRequestType.getWoeid()));
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+            }
+        });
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(responseAdapter);
-
+        mRecyclerView.setAdapter(responseLocationAdapter);
     }
 
     private void setOnclickListeners() {
@@ -67,8 +75,8 @@ public class SearchActivity extends AppCompatActivity {
                     public void onResponse(Call<ArrayList<ResponseRequestType>> call, Response<ArrayList<ResponseRequestType>> response) {
                         if (response.code()==HttpURLConnection.HTTP_OK){
                             respons = response.body();
-                            responseAdapter.updateDataSet(respons);
-                            responseAdapter.notifyDataSetChanged();
+                            responseLocationAdapter.updateDataSet(respons);
+                            responseLocationAdapter.notifyDataSetChanged();
 
                         }
                     }
@@ -91,5 +99,6 @@ public class SearchActivity extends AppCompatActivity {
                         mRecyclerView = findViewById(R.id.recycler);
 
                     }
-                }
+
+}
 
