@@ -4,47 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Handler mhandler = new Handler();
-    private Boolean IsFirst = true;
+    private Button getPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-            mhandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    dostuff();
-                }
-            }, 5000);
-    }
-
-
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        mhandler.postDelayed(new Runnable() {
+        getPass = findViewById(R.id.mtvbtn);
+        getPass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                //dostuff();
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
             }
-        }, 1000);
+        });
 
-    }
-
-    private void dostuff() {
-
-        Bundle bundle = new Bundle();
-        bundle.putString("city", "Banglore");
-        bundle.putString("weoid", "220101");
-        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
     }
 }
