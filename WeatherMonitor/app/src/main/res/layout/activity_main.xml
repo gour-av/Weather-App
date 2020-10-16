@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
     tools:context=".MainActivity">
-    <Button
-        android:id="@+id/mtvbtn"
+
+    <ImageView
+        android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_centerInParent="true"
-        android:text="Open Search Activity "/>
+        android:layout_centerInParent="true"
+        android:src="@drawable/weather" />
 
+    <TextView
+        android:id="@+id/tv_appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_logo"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/give_you_glory"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_30" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/dp_5"
+        android:text="@string/powered"
+        android:textSize="@dimen/sp_10" />
 
 </RelativeLayout>

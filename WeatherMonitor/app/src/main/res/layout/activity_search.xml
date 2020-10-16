@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@drawable/search_background"
     android:padding="16dp"
     tools:context=".SearchActivity">
 
@@ -16,26 +16,35 @@
         android:layout_marginStart="@dimen/dp_30"
         android:layout_marginEnd="@dimen/dp_30"
         android:hint="@string/enter_Location"
-        android:layout_marginBottom="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_50"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/dp_20"
         android:id="@+id/btn_search_get_btn"
+        android:background="@drawable/outline"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_30"
-        android:text="@string/getWeather"/>
+        android:padding="@dimen/dp_20"
+        android:text="@string/getWeather" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/pBar"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_centerInParent="true" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

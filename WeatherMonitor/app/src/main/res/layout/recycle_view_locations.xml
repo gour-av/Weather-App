@@ -1,36 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_20"
+    android:elevation="@dimen/dp_20"
+    app:cardBackgroundColor="@android:color/holo_blue_light">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/mtvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
             android:layout_margin="20dp"
-            android:text="Title"/>
+            android:textColor="@android:color/white" />
+
         <TextView
+            android:id="@+id/mtvLocation_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:id="@+id/mtvLocation_type"
             android:layout_below="@id/mtvTitle"
-            android:text="Location_Type"/>
+            android:text="Location_Type"
+            android:textColor="@android:color/white" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:id="@+id/mtvWoeId"
-        android:layout_below="@id/mtvLocation_type"
-        android:text="WoeId"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:id="@+id/mtvLatt_long"
-        android:layout_below="@id/mtvWoeId"
-        android:text="Latt_Long"/>
+        <TextView
+            android:id="@+id/mtvLatt_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mtvLocation_type"
+            android:layout_margin="20dp"
+            android:text="Latt_Long"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dp_20"
+            android:src="@drawable/ic_baseline_location_on_24" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

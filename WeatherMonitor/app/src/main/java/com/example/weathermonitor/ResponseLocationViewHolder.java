@@ -12,17 +12,17 @@ import com.example.weathermonitor.api.ResponseRequestType;
 ViewHolder class of the RecyclerView
 */
 public class ResponseLocationViewHolder extends RecyclerView.ViewHolder {
-    private TextView WoeId , Title,Location_Type,Latt_Long;
-     //onClickListener onClickListener;
+    private TextView Title, Location_Type, Latt_Long;
+    //onClickListener onClickListener;
 
 
-    public  ResponseLocationViewHolder(@NonNull View itemView/*, onClickListener onClickListener*/ ) {
+    public ResponseLocationViewHolder(@NonNull View itemView/*, onClickListener onClickListener*/) {
         super(itemView);
         initViews(itemView);
     }
 
     private void initViews(View itemView) {
-            WoeId = itemView.findViewById(R.id.mtvWoeId);
+        //WoeId = itemView.findViewById(R.id.mtvWoeId);
             Title = itemView.findViewById(R.id.mtvTitle);
             Location_Type = itemView.findViewById(R.id.mtvLocation_type);
             Latt_Long = itemView.findViewById(R.id.mtvLatt_long);
@@ -32,7 +32,7 @@ public class ResponseLocationViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(ResponseRequestType model) {
-      WoeId.setText(String.valueOf(model.getWoeid()));
+        //WoeId.setText(String.valueOf(model.getWoeid()));
       Title.setText(model.getTitle());
       Location_Type.setText(model.getLocationType());
       Latt_Long.setText(model.getLattLong());

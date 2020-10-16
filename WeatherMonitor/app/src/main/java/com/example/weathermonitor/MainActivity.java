@@ -1,27 +1,46 @@
 package com.example.weathermonitor;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity {
-    private Button getPass;
+
+    private TextView tv_appName;
+    private Handler mhandler = new Handler();
+    private int delay = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getPass = findViewById(R.id.mtvbtn);
-        getPass.setOnClickListener(new View.OnClickListener() {
+        tv_appName = findViewById(R.id.tv_appName);
+        mhandler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-                startActivity(intent);
+            public void run() {
+                dostuff();
+                animation();
             }
-        });
+        }, delay);
 
     }
+
+    private void dostuff() {
+
+        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    private void animation() {
+
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.translate);
+        tv_appName.startAnimation(animation);
+    }
+
 }
