@@ -33,9 +33,9 @@ public class ResponseLocationViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(ResponseRequestType model) {
         //WoeId.setText(String.valueOf(model.getWoeid()));
-      Title.setText(model.getTitle());
-      Location_Type.setText(model.getLocationType());
-      Latt_Long.setText(model.getLattLong());
+        Title.setText("Location : " + model.getTitle());
+        Location_Type.setText("Location Type : " + model.getLocationType());
+        Latt_Long.setText("Lat & Long : " + model.getLattLong());
 
 
     }

@@ -13,19 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_appName;
-    private Handler mhandler = new Handler();
-    private int delay = 5000;
+    private final Handler mhandler = new Handler();
+    private final int delay = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv_appName = findViewById(R.id.tv_appName);
+        animation();
         mhandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 dostuff();
-                animation();
             }
         }, delay);
 
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void animation() {

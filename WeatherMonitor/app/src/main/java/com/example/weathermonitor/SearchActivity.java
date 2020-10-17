@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +33,6 @@ public class SearchActivity extends AppCompatActivity {
 
     private String[] lables;
     private ArrayAdapter<String> adapter;
-    private ProgressBar pBar;
     private String Pass;
     private AutoCompleteTextView atv_search_bar;
     private Button btn_search_get_btn;
@@ -80,29 +78,29 @@ public class SearchActivity extends AppCompatActivity {
         btn_search_get_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pBar.setVisibility(View.VISIBLE);
                 Pass = atv_search_bar.getText().toString();
-                ApiClient apiClient = Network.getInstance().create(ApiClient.class);
-                Call<ArrayList<ResponseRequestType>> call = apiClient.enterName(Pass);
-                call.enqueue(new Callback<ArrayList<ResponseRequestType>>() {
-                    @Override
-                    public void onResponse(Call<ArrayList<ResponseRequestType>> call, Response<ArrayList<ResponseRequestType>> response) {
-                        if (response.code() == HttpURLConnection.HTTP_OK) {
-                            respons = response.body();
-                            responseLocationAdapter.updateDataSet(respons);
-                            responseLocationAdapter.notifyDataSetChanged();
-                            pBar.setVisibility(View.GONE);
-
+                if (Pass.equalsIgnoreCase("")) {
+                    atv_search_bar.setError("This field can not be blank");
+                } else {
+                    ApiClient apiClient = Network.getInstance().create(ApiClient.class);
+                    Call<ArrayList<ResponseRequestType>> call = apiClient.enterName(Pass);
+                    call.enqueue(new Callback<ArrayList<ResponseRequestType>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<ResponseRequestType>> call, Response<ArrayList<ResponseRequestType>> response) {
+                            if (response.code() == HttpURLConnection.HTTP_OK) {
+                                respons = response.body();
+                                responseLocationAdapter.updateDataSet(respons);
+                                responseLocationAdapter.notifyDataSetChanged();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ArrayList<ResponseRequestType>> call, Throwable t) {
-                        Toast.makeText(SearchActivity.this, "Response Failed" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ArrayList<ResponseRequestType>> call, Throwable t) {
+                            Toast.makeText(SearchActivity.this, "Response Failed" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-
+                }
             }
         });
     }
@@ -112,8 +110,6 @@ public class SearchActivity extends AppCompatActivity {
         btn_search_get_btn = findViewById(R.id.btn_search_get_btn);
         atv_search_bar = findViewById(R.id.atv_search_bar);
         mRecyclerView = findViewById(R.id.recycler);
-        pBar = (ProgressBar) findViewById(R.id.pBar);
-
     }
 
 }
