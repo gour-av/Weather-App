@@ -7,55 +7,35 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weathermonitor.api.ResponseRequestType;
+import java.util.List;
 
-import java.util.ArrayList;
-
-/*
-Adapter Class of the RecyclerView
- */
 public class ResponseLocationAdapter extends RecyclerView.Adapter<ResponseLocationViewHolder> {
-    private ArrayList<ResponseRequestType> requestTypes;
-    public onClickListener onClickListener;
 
+    private final List<ResponseLocation> responseLocations;
+    private final ItemClickListener itemClickListener;
 
-    public ResponseLocationAdapter(ArrayList<ResponseRequestType> model,onClickListener onClickListener) {
-        requestTypes = new ArrayList<>();
-        requestTypes.addAll(model);
-        this.onClickListener = onClickListener;
+    public ResponseLocationAdapter(List<ResponseLocation> responseLocations, ItemClickListener itemClickListener) {
+        this.responseLocations = responseLocations;
+        this.itemClickListener = itemClickListener;
     }
-    public void updateDataSet(ArrayList<ResponseRequestType> model) {
-        requestTypes.clear();
-        requestTypes.addAll(model);
-    }
-
 
     @NonNull
     @Override
     public ResponseLocationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_locations, parent, false);
-        return new ResponseLocationViewHolder(view/*,onClickListener*/);
+        return new ResponseLocationViewHolder(view, itemClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ResponseLocationViewHolder holder, int position) {
-        final ResponseRequestType model = requestTypes.get(position);
-        holder.setData(model);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickListener.onClick(model);
-            }
-        });
 
-
+        ResponseLocation responseLocation = responseLocations.get(position);
+        holder.setData(responseLocation);
     }
 
     @Override
     public int getItemCount() {
-        return requestTypes.size();
-    }
-    public interface onClickListener{
-        void onClick(ResponseRequestType responseRequestType);
+
+        return responseLocations.size();
     }
 }

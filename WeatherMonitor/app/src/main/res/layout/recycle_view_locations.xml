@@ -8,6 +8,7 @@
     app:cardBackgroundColor="@android:color/holo_blue_light">
 
     <RelativeLayout
+        android:id="@+id/rlLocation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

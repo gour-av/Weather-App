@@ -1,43 +1,54 @@
 package com.example.weathermonitor;
 
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.weathermonitor.api.ResponseRequestType;
-
-/*
-ViewHolder class of the RecyclerView
-*/
 public class ResponseLocationViewHolder extends RecyclerView.ViewHolder {
-    private TextView Title, Location_Type, Latt_Long;
-    //onClickListener onClickListener;
 
+    private TextView mtvTitle, mtvLocation_type, mtvLatt_long;
+    private RelativeLayout rlLocation;
+    private ItemClickListener itemClickListener;
 
-    public ResponseLocationViewHolder(@NonNull View itemView/*, onClickListener onClickListener*/) {
+    public ResponseLocationViewHolder(@NonNull View itemView, ItemClickListener itemClickListener) {
         super(itemView);
-        initViews(itemView);
+        init(itemView, itemClickListener);
     }
 
-    private void initViews(View itemView) {
-        //WoeId = itemView.findViewById(R.id.mtvWoeId);
-            Title = itemView.findViewById(R.id.mtvTitle);
-            Location_Type = itemView.findViewById(R.id.mtvLocation_type);
-            Latt_Long = itemView.findViewById(R.id.mtvLatt_long);
-            //this.onClickListener = onClickListener;
-            /*Title.setOnClickListener(this);
-            WoeId.setOnClickListener(this);*/
+    private void init(View view, ItemClickListener itemClickListener) {
+
+        mtvTitle = view.findViewById(R.id.mtvTitle);
+        mtvLocation_type = view.findViewById(R.id.mtvLocation_type);
+        mtvLatt_long = view.findViewById(R.id.mtvLatt_long);
+
+        rlLocation = view.findViewById(R.id.rlLocation);
+        this.itemClickListener = itemClickListener;
+
+//        tv_weatherState = view.findViewById(R.id.tv_weatherState);
+//        tv_windDirection = view.findViewById(R.id.tv_windDirection);
+//        tv_date = view.findViewById(R.id.tv_date);
+//        tv_minTemp = view.findViewById(R.id.tv_minTemp);
+//        tv_maxTemp = view.findViewById(R.id.tv_maxTemp);
+//        tv_windSpeed = view.findViewById(R.id.tv_windSpeed);
+//        tv_airPressure = view.findViewById(R.id.tv_airPressure);
+
+
     }
 
-    public void setData(ResponseRequestType model) {
-        //WoeId.setText(String.valueOf(model.getWoeid()));
-        Title.setText("Location : " + model.getTitle());
-        Location_Type.setText("Location Type : " + model.getLocationType());
-        Latt_Long.setText("Lat & Long : " + model.getLattLong());
+    public void setData(final ResponseLocation responseLocation) {
 
+        mtvTitle.setText(responseLocation.getTitle());
+        mtvLocation_type.setText(responseLocation.getLocationType());
+        mtvLatt_long.setText(responseLocation.getLattLong());
 
+        rlLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onItemCLick(getAdapterPosition(), responseLocation);
+            }
+        });
     }
-
 }

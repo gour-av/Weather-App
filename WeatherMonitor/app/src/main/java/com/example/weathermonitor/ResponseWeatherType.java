@@ -1,12 +1,12 @@
-package com.example.weathermonitor.api;
-
-import java.util.List;
+package com.example.weathermonitor;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.List;
 
 
-public class 	ResponseWeatherType implements Serializable {
+public class ResponseWeatherType implements Serializable {
 
 	@SerializedName("consolidated_weather")
 	private List<ConsolidatedWeatherItem> consolidatedWeather;

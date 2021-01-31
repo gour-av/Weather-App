@@ -1,7 +1,8 @@
-package com.example.weathermonitor.api;
+package com.example.weathermonitor;
 
 
 import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 
